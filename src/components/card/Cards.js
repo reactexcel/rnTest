@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const Cards = ({ localText }) => {
+const Cards = ({ inputText }) => {
   return (
     <View style={styles.container}>
       <Text style={{ color: "black" }}>
-        {localText}
+        {inputText}
       </Text>
     </View>
   );
@@ -18,11 +18,19 @@ const styles = StyleSheet.create({
     flex: 1,
     marginVertical: 10,
     height: 100,
-    width: 270,
+    width: 250,
     borderColor: "black",
-    borderWidth: 1,
     borderRadius: 10,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    backgroundColor: "white"
   }
 });

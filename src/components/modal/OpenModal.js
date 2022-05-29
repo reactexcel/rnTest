@@ -21,7 +21,7 @@ const ModalView = ({ setMainModal }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useDispatch();
   const data = useSelector(state => state?.users?.data);
-  const localText =  useSelector(state => state?.users?.localData)
+  const inputText =  useSelector(state => state?.users?.inputText)
 
   const openSubModal = () => {
     setMainModal(false);
@@ -57,7 +57,7 @@ const ModalView = ({ setMainModal }) => {
             </Text>
             <ScrollView>
               {data?.map(item => {
-                return <Cards id={item.id} localText={localText} />;
+                return <Cards id={item.id} inputText={inputText} />;
               })}
             </ScrollView>
             {/* <Pressable

@@ -2,7 +2,7 @@ import {
   FETCH_USERS,
   FETCH_USERS_FULLFILLED,
   FETCH_USERS_REJECTED,
-  LOCALDATA
+  FETCH_USER_INPUT_TEXT
 } from "../constant/constant";
 
 export const fetchUsers = () => {
@@ -25,9 +25,9 @@ export const fetchUsersRejected = error => {
   };
 };
 
-export const fetchLocalData = data => {
+export const fetchUserInputText = data => {
   return {
-    type: LOCALDATA,
+    type: FETCH_USER_INPUT_TEXT,
     payload: data
   };
 };

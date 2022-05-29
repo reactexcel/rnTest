@@ -2,17 +2,17 @@ import {
   FETCH_USERS,
   FETCH_USERS_FULLFILLED,
   FETCH_USERS_REJECTED,
-  LOCALDATA
+  FETCH_USER_INPUT_TEXT
 } from "../constant/constant";
 
 const initialState = {
   loading: false,
   error: "",
   data: [],
-  localData: ""
+  inputText: ""
 };
 
-const usersReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USERS:
       return {
@@ -33,11 +33,11 @@ const usersReducer = (state = initialState, action) => {
         data: [],
         error: action.payload
       };
-    case LOCALDATA: {
+    case FETCH_USER_INPUT_TEXT: {
       console.log("reducer local datat", action.payload);
       return {
         ...state,
-        localData: action.payload
+        inputText: action.payload
       };
     }
     default: {
@@ -46,4 +46,4 @@ const usersReducer = (state = initialState, action) => {
   }
 };
 
-export default usersReducer;
+export default reducer;

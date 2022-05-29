@@ -9,7 +9,9 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLocalData } from "../../redux/actions/actions";
+import { fetchUserInputText } from "../../redux/actions/actions";
+import { ScrollView } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SubModal = ({ setMainModal }) => {
   const [text, setText] = useState("");
@@ -17,7 +19,7 @@ const SubModal = ({ setMainModal }) => {
   //   const localdata = useSelector(state => state);
 
   const handleDone = () => {
-    dispatch(fetchLocalData(text));
+    dispatch(fetchUserInputText(text));
     setMainModal(true);
   };
 
@@ -35,12 +37,18 @@ const SubModal = ({ setMainModal }) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}> Adding data</Text>
-            <TextInput
-              style={styles.txtInput}
-              placeholder="Add your Text here"
-              value={text}
-              onChangeText={t => setText(t)}
-            />
+            <SafeAreaView>
+              <TextInput
+                style={styles.txtInput}
+                placeholder="Add your Text here"
+                placeholderTextColor={"black"}
+                value={text}
+                multiline
+                textAlignVertical="top"
+                inp
+                onChangeText={t => setText(t)}
+              />
+            </SafeAreaView>
             <TouchableOpacity
               style={{
                 backgroundColor: "blue",
@@ -74,7 +82,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     marginHorizontal: 5,
-    flex: 1,
     padding: 35,
     alignItems: "center",
     shadowColor: "#000",
@@ -110,10 +117,20 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   txtInput: {
+    // backgroundColor: "white",
     width: 340,
     marginTop: 50,
-    height: 300,
+    height: 200,
     borderRadius: 8,
-    elevation: 3
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    padding: 15,
+    color: "black"
   }
 });
