@@ -9,14 +9,14 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserInputText } from "../../redux/actions/actions";
-import { ScrollView } from "react-native-gesture-handler";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+import { fetchUserInputText } from "../../redux/actions/actions";
 
 const SubModal = ({ setMainModal }) => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
-  //   const localdata = useSelector(state => state);
 
   const handleDone = () => {
     dispatch(fetchUserInputText(text));
@@ -36,6 +36,12 @@ const SubModal = ({ setMainModal }) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <TouchableOpacity
+              style={styles.chevronIcon}
+              onPress={() => setMainModal(true)}
+            >
+              <Ionicons name="chevron-back" size={25} color={"gray"} />
+            </TouchableOpacity>
             <Text style={styles.modalText}> Adding data</Text>
             <SafeAreaView>
               <TextInput
@@ -51,7 +57,7 @@ const SubModal = ({ setMainModal }) => {
             </SafeAreaView>
             <TouchableOpacity
               style={{
-                backgroundColor: "blue",
+                backgroundColor: "#1F51FF",
                 width: 250,
                 height: 40,
                 justifyContent: "center",
@@ -132,5 +138,10 @@ const styles = StyleSheet.create({
     elevation: 5,
     padding: 15,
     color: "black"
+  },
+  chevronIcon: {
+    position: "absolute",
+    left: 5,
+    top: 2
   }
 });

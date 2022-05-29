@@ -1,10 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
 import Home from "../screens/Home";
 import More from "../screens/More";
-// import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-import AntDesign from "react-native-vector-icons/AntDesign";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,19 +11,20 @@ export const MyTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
           if (route.name === "Home") {
-            iconName = focused ? "home" : "home";
-          } else if (route.name === "Settings") {
-            iconName = focused ? "ios-list-box" : "ios-list";
+            iconName = focused ? "ios-home" : "ios-home-outline";
+          } else if (route.name === "More") {
+            iconName = focused ? "menu" : "menu-outline";
           }
 
           // You can return any component that you like here!
-          return <AntDesign name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "tomato",
+        tabBarActiveTintColor: "#1F51FF",
         tabBarInactiveTintColor: "gray"
       })}
     >

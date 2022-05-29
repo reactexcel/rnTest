@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import ModalView from "../components/modal/OpenModal";
+
+import MainModal from "../components/modal/MainModal";
 import SubModal from "../components/modal/SubModal";
 
 const More = () => {
@@ -8,7 +9,7 @@ const More = () => {
   return (
     <View style={styles.More}>
       {mainModal
-        ? <ModalView setMainModal={setMainModal} />
+        ? <MainModal setMainModal={setMainModal} />
         : <SubModal setMainModal={setMainModal} />}
     </View>
   );

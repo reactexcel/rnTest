@@ -7,9 +7,11 @@ import {
   StyleSheet,
   Text,
   Pressable,
-  View
+  View,
+  Flatlist
 } from "react-native";
 import axios from "axios";
+
 import Cards from "../card/Cards";
 import {
   fetchUsers,
@@ -17,7 +19,7 @@ import {
   fetchUsersRejected
 } from "../../redux/actions/actions";
 
-const ModalView = ({ setMainModal }) => {
+const MainModal = ({ setMainModal }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useDispatch();
   const data = useSelector(state => state?.users?.data);
@@ -57,9 +59,14 @@ const ModalView = ({ setMainModal }) => {
             </Text>
             <ScrollView>
               {data?.map(item => {
+                console.log(item);
                 return <Cards id={item.id} inputText={inputText} />;
               })}
             </ScrollView>
+            {/* <Flatlist
+            data={data}
+            renderItem={(item) => console.log(item,"Flatlist") }
+            /> */}
             {/* <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
@@ -87,7 +94,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFF",
     borderRadius: 20,
     marginHorizontal: 10,
     padding: 35,
@@ -108,7 +115,7 @@ const styles = StyleSheet.create({
     width: 200
   },
   buttonOpen: {
-    backgroundColor: "blue"
+    backgroundColor: "#1F51FF"
   },
   buttonClose: {
     backgroundColor: "#2196F3"
@@ -128,11 +135,11 @@ const styles = StyleSheet.create({
     top: 5
   },
   addText: {
-    color: "blue",
+    color: "#1F51FF",
     position: "absolute",
     right: 20,
     top: 10
   }
 });
 
-export default ModalView;
+export default MainModal;
