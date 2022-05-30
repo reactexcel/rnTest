@@ -9,7 +9,7 @@ const initialState = {
   loading: false,
   error: "",
   data: [],
-  inputText: ""
+  inputText: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,10 +34,9 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
     case FETCH_USER_INPUT_TEXT: {
-      console.log("reducer local datat", action.payload);
       return {
         ...state,
-        inputText: action.payload
+        inputText: [{ name: action.payload }, ...state.inputText]
       };
     }
     default: {

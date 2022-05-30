@@ -8,25 +8,36 @@ import {
   Text,
   Pressable,
   View,
-  Flatlist
+  TouchableOpacity,
+  SafeAreaView,TextInput
 } from "react-native";
 import axios from "axios";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 import Cards from "../card/Cards";
 import {
   fetchUsers,
   fetchUsersFullfilled,
-  fetchUsersRejected
+  fetchUsersRejected,fetchUserInputText
 } from "../../redux/actions/actions";
 
-const MainModal = ({ setMainModal }) => {
+const MainModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useDispatch();
-  const data = useSelector(state => state?.users?.data);
-  const inputText =  useSelector(state => state?.users?.inputText)
+  const users = useSelector(state => state?.users);
+  const {data, inputText} = users
+  const combineData = [...inputText,...data ]
+  const [text, setText] = useState("");
+  const [isAdd, setIsAdd] = useState(false)
+
+  const handleDone = () => {
+    dispatch(fetchUserInputText(text));
+    setIsAdd(false);
+    setText('')
+  };
 
   const openSubModal = () => {
-    setMainModal(false);
+    setIsAdd(true);
   };
   useEffect(() => {
     dispatch(fetchUsers());
@@ -41,38 +52,63 @@ const MainModal = ({ setMainModal }) => {
   }, []);
 
   return (
-    <View style={styles.centeredView}>
+    <>
       <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
         <View style={[styles.centeredView]}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>My Modal</Text>
+          {!isAdd?<><Text style={styles.modalText}>My Modal</Text>
             <Text style={styles.addText} onPress={openSubModal}>
               Add
             </Text>
-            <ScrollView>
-              {data?.map(item => {
-                console.log(item);
-                return <Cards id={item.id} inputText={inputText} />;
+            <ScrollView showsVerticalScrollIndicator={false}>
+              
+              {combineData?.map(item => {
+                return <Cards user={item.name}  />;
               })}
-            </ScrollView>
-            {/* <Flatlist
-            data={data}
-            renderItem={(item) => console.log(item,"Flatlist") }
-            /> */}
-            {/* <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
+            </ScrollView></>
+            
+            :<><TouchableOpacity
+              style={styles.chevronIcon}
+              onPress={() => setIsAdd(false)}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable> */}
+              <Ionicons name="chevron-back" size={25} color={"gray"} />
+            </TouchableOpacity>
+            <Text style={styles.modalText1}> Adding data </Text>
+            <SafeAreaView>
+              <TextInput
+                style={styles.txtInput}
+                placeholder="Add your Text here"
+                placeholderTextColor={"black"}
+                value={text}
+                multiline
+                textAlignVertical="top"
+                inp
+                onChangeText={t => setText(t)}
+              />
+            </SafeAreaView>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#1F51FF",
+                width: 250,
+                height: 40,
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 10,
+                marginTop: 10
+              }}
+              onPress={handleDone}
+            >
+              <Text style={{color:'white'}}>Done</Text>
+            </TouchableOpacity>
+            </>
+          }
           </View>
         </View>
       </Modal>
@@ -82,7 +118,7 @@ const MainModal = ({ setMainModal }) => {
       >
         <Text style={styles.textStyle}>Open Modal</Text>
       </Pressable>
-    </View>
+    </>
   );
 };
 
@@ -117,9 +153,7 @@ const styles = StyleSheet.create({
   buttonOpen: {
     backgroundColor: "#1F51FF"
   },
-  buttonClose: {
-    backgroundColor: "#2196F3"
-  },
+  
   textStyle: {
     color: "white",
     fontWeight: "bold",
@@ -139,6 +173,34 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 20,
     top: 10
+  },
+  modalText1: {
+    marginBottom: 15,
+    textAlign: "center",
+    color: "black",
+    position: "absolute",
+    fontSize: 20
+  },
+  txtInput: {
+    width: 340,
+    marginTop: 50,
+    height: 200,
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    padding: 15,
+    color: "black"
+  },
+  chevronIcon: {
+    position: "absolute",
+    left: 5,
+    top: 2
   }
 });
 

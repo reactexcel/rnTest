@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const Cards = ({ inputText }) => {
+const Cards = ({ user, inputText }) => {
   return (
     <View style={styles.container}>
+      <Text style={{ color: "black" }}>
+        {user}
+      </Text>
       <Text style={{ color: "black" }}>
         {inputText}
       </Text>
@@ -15,11 +18,10 @@ export default Cards;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     padding: 5,
     margin: 10,
-    height: 100,
-    width: 250,
+    height: 120,
+    width: 280,
     borderColor: "black",
     borderRadius: 10,
     alignItems: "center",

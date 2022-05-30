@@ -1,16 +1,12 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 
 import MainModal from "../components/modal/MainModal";
-import SubModal from "../components/modal/SubModal";
 
 const More = () => {
-  const [mainModal, setMainModal] = useState(true);
   return (
     <View style={styles.More}>
-      {mainModal
-        ? <MainModal setMainModal={setMainModal} />
-        : <SubModal setMainModal={setMainModal} />}
+      <MainModal />
     </View>
   );
 };
@@ -23,16 +19,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white"
-  },
-  btnContainer: {
-    backgroundColor: "blue",
-    height: 50,
-    width: 200,
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  btnTxt: {
-    color: "white"
   }
 });

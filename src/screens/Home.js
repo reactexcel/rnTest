@@ -2,11 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 const Home = () => {
-  return (
-    <View style={styles.Home}>
-      <Text style={{ color: "black" }}>Home</Text>
-    </View>
-  );
+  return <View style={styles.Home} />;
 };
 
 export default Home;
