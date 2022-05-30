@@ -81,10 +81,9 @@ const MainModal = () => {
               <Ionicons name="chevron-back" size={25} color={"gray"} />
             </TouchableOpacity>
             <Text style={styles.modalText1}> Adding data </Text>
-            <SafeAreaView>
               <TextInput
                 style={styles.txtInput}
-                placeholder="Add your Text here"
+                placeholder="Add your Text here....."
                 placeholderTextColor={"black"}
                 value={text}
                 multiline
@@ -92,7 +91,6 @@ const MainModal = () => {
                 inp
                 onChangeText={t => setText(t)}
               />
-            </SafeAreaView>
             <TouchableOpacity
               style={{
                 backgroundColor: "#1F51FF",
@@ -172,7 +170,8 @@ const styles = StyleSheet.create({
     color: "#1F51FF",
     position: "absolute",
     right: 20,
-    top: 10
+    top: 10,
+    fontSize:15
   },
   modalText1: {
     marginBottom: 15,
@@ -185,7 +184,7 @@ const styles = StyleSheet.create({
     width: 340,
     marginTop: 50,
     height: 200,
-    borderRadius: 8,
+    borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -195,7 +194,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     padding: 15,
-    color: "black"
+    color: "black",
+    backgroundColor:'white'
   },
   chevronIcon: {
     position: "absolute",
