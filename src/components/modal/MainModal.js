@@ -31,7 +31,7 @@ const MainModal = () => {
   const [isAdd, setIsAdd] = useState(false)
 
   const handleDone = () => {
-    dispatch(fetchUserInputText(text));
+    text?dispatch(fetchUserInputText(text)):null
     setIsAdd(false);
     setText('')
   };

@@ -1,14 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const Cards = ({ user, inputText }) => {
+const Cards = ({ user }) => {
   return (
     <View style={styles.container}>
       <Text style={{ color: "black" }}>
         {user}
-      </Text>
-      <Text style={{ color: "black" }}>
-        {inputText}
       </Text>
     </View>
   );
